@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	base = (unsigned int *)mmap(NULL, words * 4, PROT_READ | PROT_WRITE, MAP_SHARED, fd, addr);
-	if (!base) {
+	if (!base || (long int)base == -1) {
 		printf("%s: error in mmap\n", MYNAME);
 		close(fd);
 		return -EIO;
